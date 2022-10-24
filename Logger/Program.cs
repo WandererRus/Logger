@@ -17,6 +17,8 @@ namespace Logger
                 teams.NewWorker("Коля", loger);
                 Thread.Sleep(1000);
                 teams.NewWorker("Ваня", loger);
+
+                Console.WriteLine(teams[2]);
                 
             }
             catch (FileNotFoundException ex)
@@ -58,6 +60,24 @@ namespace Logger
             workers.Add(new Worker(Name,loger));
             loger.WriteLog(DateTime.Now.ToString() + "В команде добавили" + Name );
         }
+
+        public string this[int a]
+        {
+            get 
+            {
+                if (a >= 0 && a < workers.Count)
+                { return workers[a].Name; }
+                else { return ""; }
+            }
+            set 
+            {
+                if (a >= 0 && a < workers.Count)
+                {  
+                    workers[a].Name = value;                 
+                }
+                else {  }
+            }
+        }
     }
 
     class Loger
@@ -96,4 +116,6 @@ namespace Logger
             }
         }
     }
+
+
 }
